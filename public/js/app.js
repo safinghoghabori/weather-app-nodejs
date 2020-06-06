@@ -22,18 +22,17 @@ form.addEventListener("submit", (e) => {
   // Start the loader
   msg1.textContent = "Loading...";
 
-  // Fetch the data
-  fetch(`http://localhost:3000/weather?address=${location}`).then(
-    (response) => {
-      response.json().then((data) => {
-        if (data.error) {
-          error.textContent = data.error;
-          msg1.textContent = "";
-        } else {
-          msg1.textContent = data.location;
-          msg2.textContent = `Cloud: ${data.forecast.cloud} and Temp: ${data.forecast.temprature}`;
-        }
-      });
-    }
-  );
+  // Fetch the data (WE CHANGE LOCALHOST URL TO RELATIVE URL BCUZ OF WE HOSTED IT ON HEROKU)
+  // fetch(`http://localhost:3000/weather?address=${location}`).then(
+  fetch(`/weather?address=${location}`).then((response) => {
+    response.json().then((data) => {
+      if (data.error) {
+        error.textContent = data.error;
+        msg1.textContent = "";
+      } else {
+        msg1.textContent = data.location;
+        msg2.textContent = `Cloud: ${data.forecast.cloud} and Temp: ${data.forecast.temprature}`;
+      }
+    });
+  });
 });

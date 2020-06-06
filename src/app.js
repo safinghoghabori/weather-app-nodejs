@@ -7,6 +7,7 @@ const geocode = require("./utils/geocode");
 const forecast = require("./utils/forecast");
 
 const app = express(); //This will create an express application
+const port = process.env.PORT || 3000; // ONLY FOR PRODUCTION/ TO RUN APP ON HEROKU
 
 // Define path for Express config(path.join will join the path)
 const publicDirectoryPath = path.join(__dirname, "../public");
@@ -88,6 +89,10 @@ app.get("*", (req, res) => {
 });
 
 // To start server annd listen at specific port
-app.listen(3000, () => {
-  console.log("This is 3000 port running...");
+// app.listen(3000, () => {
+//   console.log("This is 3000 port running...");
+// });
+
+app.listen(port, () => {
+  console.log(`This is ${port} running...`);
 });
